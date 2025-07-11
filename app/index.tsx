@@ -1,15 +1,18 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, ScrollView } from "react-native";
+import {
+  useWindowDimensions,
+  StyleSheet,
+  Text,
+  View,
+  ScrollView,
+} from "react-native";
 import HeaderHome from "../components/HeaderHome";
 
 export default function index() {
+  const { height } = useWindowDimensions();
   return (
-    <ScrollView>
-      <View style={styles.container}>
-        <HeaderHome />
-        <Text>Aleluya</Text>
-        <StatusBar style="auto" />
-      </View>
+    <ScrollView style={styles.container}>
+      <View style={[styles.headerBox, { height: height * 0.4 }]} />
     </ScrollView>
   );
 }
@@ -18,7 +21,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
+  },
+  headerBox: {
+    backgroundColor: "#555352",
   },
 });

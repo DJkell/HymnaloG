@@ -1,6 +1,7 @@
-import { View, StyleSheet, Text } from "react-native";
+import { useWindowDimensions, View, StyleSheet, Text } from "react-native";
 
 export default function HeaderHome() {
+  const { height } = useWindowDimensions();
   return (
     <View style={style.backHeader}>
       <Text>HOla Diego</Text>
@@ -12,7 +13,6 @@ const style = StyleSheet.create({
   backHeader: {
     backgroundColor: "#555352",
     width: "100%",
-    height: 40,
-    paddingTop: "20%",
+    height: "50%",
   },
 });
