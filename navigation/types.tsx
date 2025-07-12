@@ -1,4 +1,8 @@
 export type DrawerParamList = {
   index: undefined;
-  settings: undefined;
+  searchView: undefined;
+};
+
+export type RootStackParamList = {
+  Home: undefined;
 };

@@ -10,7 +10,7 @@ export default function RootLayout() {
           options={{ drawerLabel: "Inicio", title: "Inicio" }}
         />
         <Drawer.Screen
-          name="settings"
+          name="searchView"
           options={{ drawerLabel: "Ajustes", title: "Ajustes" }}
         />
       </Drawer>
