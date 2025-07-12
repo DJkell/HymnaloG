@@ -10,7 +10,19 @@ export const dataBtnHome: ListItemsOp[] = [
   },
   {
     id: "2",
-    label: "primera opcion",
+    label: "segunda opcion",
+    screenPt: "./searchView",
+    btnColor: "green",
+  },
+  {
+    id: "3",
+    label: "tercera opcion",
+    screenPt: "./searchView",
+    btnColor: "blue",
+  },
+  {
+    id: "4",
+    label: "cuarta opcion",
     screenPt: "./searchView",
     btnColor: "green",
   },

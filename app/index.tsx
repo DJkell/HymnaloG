@@ -15,24 +15,36 @@ import { useRouter } from "expo-router";
 export default function index() {
   const router = useRouter();
 
-  const { height } = useWindowDimensions();
+  const { width, height } = useWindowDimensions();
+  const intablet = width > 485;
+
   return (
     <ScrollView style={styles.container}>
-      <View style={[styles.headerBox, { height: height * 0.4 }]} />
-
-      <FlatList
-        data={dataBtnHome}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item }: { item: ListItemsOp }) => (
-          <OptionsBtn
-            texto={item.label}
-            colorP={item.btnColor}
-            option={item.id}
-            onpressp={() => router.push(item.screenPt)}
-          />
-        )}
-      />
-
+      <View
+        style={[
+          styles.headerBox,
+          { height: height * 0.4, maxHeight: intablet ? 300 : 400 },
+        ]}
+      >
+        <FlatList
+          data={dataBtnHome}
+          keyExtractor={(item) => item.id}
+          numColumns={2}
+          columnWrapperStyle={{
+            justifyContent: intablet ? "center" : "space-between",
+            padding: 10,
+          }}
+          contentContainerStyle={{ padding: 16 }}
+          renderItem={({ item }: { item: ListItemsOp }) => (
+            <OptionsBtn
+              texto={item.label}
+              colorP={item.btnColor}
+              option={item.id}
+              onpressp={() => router.push(item.screenPt)}
+            />
+          )}
+        />
+      </View>
       <View style={[styles.headerbuscar, { height: height * 0.1 }]}>
         {/* Aqui voy a poner la barra de busqueda */}
       </View>
