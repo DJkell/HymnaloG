@@ -7,9 +7,9 @@ import {
   View,
   ScrollView,
 } from "react-native";
-import OptionsBtn from "./components/OptionsBtn";
-import { dataBtnHome } from "./data/OptionsBtnData";
-import type { ListItemsOp } from "./types/ophomeTypes";
+import OptionsBtn from "./src/components/OptionsBtn";
+import { dataBtnHome } from "./src/data/OptionsBtnData";
+import type { ListItemsOp } from "./src/types/ophomeTypes";
 import { useRouter } from "expo-router";
 
 export default function index() {
