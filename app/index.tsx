@@ -12,9 +12,25 @@ import { dataBtnHome } from "./src/data/OptionsBtnData";
 import type { ListItemsOp } from "./src/types/ophomeTypes";
 import { useRouter } from "expo-router";
 
+import { useEffect } from "react";
+import { insertHymns } from "./db/db.insertHymn";
+import { createHymnsTable } from "./db/dbCreation";
+
+import HymnsFull from "./src/components/HymnCard";
+
 export default function index() {
+  //*Aqui inicializamos nuestra base de datos creando la tabla e insertando los valores*/
+  useEffect(() => {
+    (async () => {
+      await createHymnsTable();
+      await insertHymns();
+    })();
+  }, []);
+
+  /*Aqui Configuramos el router para usarlo mas abajo*/
   const router = useRouter();
 
+  /*Aqui extraimos el alto y ancho de nuestra pestana para crear el efecto responsive*/
   const { width, height } = useWindowDimensions();
   const intablet = width > 485;
 
@@ -48,6 +64,7 @@ export default function index() {
       <View style={[styles.headerbuscar, { height: height * 0.1 }]}>
         {/* Aqui voy a poner la barra de busqueda */}
       </View>
+      <HymnsFull />
     </ScrollView>
   );
 }
