@@ -6,6 +6,7 @@ import {
   Text,
   View,
   ScrollView,
+  ImageBackground,
 } from "react-native";
 import OptionsBtn from "@/components/OptionsBtn";
 import { dataBtnHome } from "@/data/OptionsBtnData";
@@ -17,7 +18,7 @@ import { insertHymns } from "../src/db/db.insertHymn";
 import { createHymnsTable } from "../src/db/dbCreation";
 import { resetHymns } from "@/db/resetdb";
 
-import HymnsFull from "@/components/HymnCard";
+/* import HymnsFull from "@/components/HymnCard"; */
 
 export default function index() {
   //*Aqui inicializamos nuestra base de datos creando la tabla e insertando los valores*/
@@ -38,11 +39,19 @@ export default function index() {
 
   /*Aqui Configuramos el router para usarlo mas abajo*/
   return (
-    <ScrollView style={styles.container}>
+    <ImageBackground
+      source={require("../assets/fondoHymHome.jpg")}
+      style={[styles.backg, { padding: 20 }]}
+      resizeMode="cover"
+    >
       <View
         style={[
           styles.headerBox,
-          { height: height * 0.4, maxHeight: intablet ? 300 : 400 },
+          {
+            height: height * 0.4,
+            maxHeight: intablet ? 300 : 400,
+            marginTop: intablet ? 150 : 200,
+          },
         ]}
       >
         <FlatList
@@ -64,21 +73,23 @@ export default function index() {
           )}
         />
       </View>
-      <View style={[styles.headerbuscar, { height: height * 0.1 }]}>
-        {/* Aqui voy a poner la barra de busqueda */}
-      </View>
-      <HymnsFull />
-    </ScrollView>
+
+      {/*     <HymnsFull /> */}
+    </ImageBackground>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+  },
+  backg: {
+    flex: 1,
+    backgroundColor: "black",
+    justifyContent: "center",
   },
   headerBox: {
-    backgroundColor: "#555352",
+    backgroundColor: "rgba(88, 88, 88, 0.7)",
   },
   headerbuscar: {
     backgroundColor: "#E6DED4",

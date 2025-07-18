@@ -9,6 +9,8 @@ import {
 } from "react-native";
 import { getAllHymns } from "@/db/db.getHymns";
 import { hymnt } from "@/types/hymnTypes";
+import HymnsList from "@/components/HymnCard";
+import SearchBar from "@/components/SearchBar";
 
 const HymnSearchScreen = () => {
   const [query, setQuery] = useState("");
@@ -39,36 +41,23 @@ const HymnSearchScreen = () => {
   };
 
   return (
-    <View>
-      <TextInput
-        style={styles.input}
+    <View style={styles.container}>
+      <SearchBar
         placeholder="Buscar por número o nombre"
         value={query}
         onChangeText={filSearch}
       />
 
-      <FlatList
-        data={filHymns}
-        keyExtractor={(item) => item.id.toString()}
-        renderItem={({ item }) => (
-          <TouchableOpacity style={styles.hymnCard}>
-            <Text style={styles.hymnNumber}>#{item.id}</Text>
-            <Text style={styles.hymnName}>{item.title}</Text>
-            <Text style={styles.tags}>
-              {item.category} • {item.duration}
-            </Text>
-          </TouchableOpacity>
-        )}
-      />
+      <HymnsList data={filHymns} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     padding: 16,
     backgroundColor: "#3C2A4D",
+    flex: 1,
   },
   input: {
     backgroundColor: "#D6C6CC",
@@ -76,26 +65,6 @@ const styles = StyleSheet.create({
     borderRadius: 10,
     fontSize: 16,
     marginBottom: 10,
-  },
-  hymnCard: {
-    backgroundColor: "#F5F1E3",
-    borderRadius: 12,
-    padding: 16,
-    marginVertical: 6,
-  },
-  hymnNumber: {
-    fontWeight: "bold",
-    fontSize: 16,
-    color: "#000",
-  },
-  hymnName: {
-    fontSize: 18,
-    fontWeight: "600",
-    marginBottom: 4,
-  },
-  tags: {
-    fontSize: 12,
-    color: "#666",
   },
 });
 
