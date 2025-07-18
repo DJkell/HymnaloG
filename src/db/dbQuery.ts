@@ -1,5 +1,5 @@
 import { openDbAsync } from "./dbConection";
-import { hymnt } from "../src/types/hymnTypes";
+import { hymnt } from "../types/hymnTypes";
 
 export const getHymns = async (id: number): Promise<hymnt | null> => {
   const db = await openDbAsync();

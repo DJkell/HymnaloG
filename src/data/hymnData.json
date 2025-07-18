@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "title": "Alabad al Señor",
+    "category": "solemne",
+    "duration": "corto",
+    "content": "Alabad al Señor porque El es bueno, Alabad al Señor porque El es bueno, Alabad al Señor porque Él es bueno. Porque para siempre es su misericordia."
+  },
+  {
+    "id": 2,
+    "title": "segundo",
+    "category": "solemne",
+    "duration": "corto",
+    "content": "Alabad al Señor porque El es bueno, Alabad al Señor porque El es bueno, Alabad al Señor porque Él es bueno. Porque para siempre es su misericordia."
+  },
+  {
+    "id": 3,
+    "title": "tercero",
+    "category": "solemne",
+    "duration": "corto",
+    "content": "Alabad al Señor porque El es bueno, Alabad al Señor porque El es bueno, Alabad al Señor porque Él es bueno. Porque para siempre es su misericordia."
+  }
+]

@@ -1,6 +1,10 @@
 {
   "extends": "expo-module-scripts/tsconfig.base",
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    },
     "module": "Node16",
     "moduleResolution": "node16",
     "target": "es2022",

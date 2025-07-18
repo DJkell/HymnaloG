@@ -1,5 +1,5 @@
-import type { RootStackParamList } from "../../../navigation/types";
-import type { ListItemsOp } from "../types/ophomeTypes";
+import type { RootStackParamList } from "navigation/types";
+import type { ListItemsOp } from "@/types/ophomeTypes";
 
 export const dataBtnHome: ListItemsOp[] = [
   {

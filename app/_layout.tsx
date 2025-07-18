@@ -10,8 +10,8 @@ export default function RootLayout() {
           options={{ drawerLabel: "Inicio", title: "Inicio" }}
         />
         <Drawer.Screen
-          name="searchView"
-          options={{ drawerLabel: "Ajustes", title: "Ajustes" }}
+          name="HymnSearchScreen"
+          options={{ drawerLabel: "Buscar", title: "Buscar Himno" }}
         />
       </Drawer>
     </GestureHandlerRootView>

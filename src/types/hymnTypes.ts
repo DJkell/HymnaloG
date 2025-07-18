@@ -1,7 +1,9 @@
 export interface hymnt {
   id: number;
-  nombre: string;
+  title: string;
   content: string;
   category: "Alegre" | "solemne";
-  duracion: "Corto" | "Largo";
+  duration: "Corto" | "Largo";
+  favorit: number;
+  save: number;
 }

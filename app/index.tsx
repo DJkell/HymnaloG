@@ -7,22 +7,24 @@ import {
   View,
   ScrollView,
 } from "react-native";
-import OptionsBtn from "./src/components/OptionsBtn";
-import { dataBtnHome } from "./src/data/OptionsBtnData";
-import type { ListItemsOp } from "./src/types/ophomeTypes";
+import OptionsBtn from "@/components/OptionsBtn";
+import { dataBtnHome } from "@/data/OptionsBtnData";
+import type { ListItemsOp } from "../src/types/ophomeTypes";
 import { useRouter } from "expo-router";
 
 import { useEffect } from "react";
-import { insertHymns } from "./db/db.insertHymn";
-import { createHymnsTable } from "./db/dbCreation";
+import { insertHymns } from "../src/db/db.insertHymn";
+import { createHymnsTable } from "../src/db/dbCreation";
+import { resetHymns } from "@/db/resetdb";
 
-import HymnsFull from "./src/components/HymnCard";
+import HymnsFull from "@/components/HymnCard";
 
 export default function index() {
   //*Aqui inicializamos nuestra base de datos creando la tabla e insertando los valores*/
   useEffect(() => {
     (async () => {
       await createHymnsTable();
+      await resetHymns(); //Voy a quitar esto en produccion
       await insertHymns();
     })();
   }, []);
@@ -34,6 +36,7 @@ export default function index() {
   const { width, height } = useWindowDimensions();
   const intablet = width > 485;
 
+  /*Aqui Configuramos el router para usarlo mas abajo*/
   return (
     <ScrollView style={styles.container}>
       <View
