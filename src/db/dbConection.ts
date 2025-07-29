@@ -1,6 +1,10 @@
 import * as SQLite from "expo-sqlite";
 
-export const openDbAsync = async () => {
-  const db = await SQLite.openDatabaseAsync("Himnario.db");
+let db: SQLite.SQLiteDatabase | null = null;
+
+export const openDbAsync = async (): Promise<SQLite.SQLiteDatabase> => {
+  if (!db) {
+    db = await SQLite.openDatabaseAsync("Himnario.db");
+  }
   return db;
 };

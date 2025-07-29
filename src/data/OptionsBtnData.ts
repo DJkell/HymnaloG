@@ -4,25 +4,25 @@ import type { ListItemsOp } from "@/types/ophomeTypes";
 export const dataBtnHome: ListItemsOp[] = [
   {
     id: "1",
-    label: "primera opcion",
-    screenPt: "./searchView",
+    label: "Buscar Himno",
+    screenPt: "/HymnSearchScreen",
     btnColor: "rgba(230, 222, 212, 1)",
   },
   {
     id: "2",
-    label: "segunda opcion",
-    screenPt: "./searchView",
+    label: "Favoritos",
+    screenPt: "./FavoriteScreen",
     btnColor: "rgba(230, 222, 212, 1)",
   },
   {
     id: "3",
-    label: "tercera opcion",
-    screenPt: "./searchView",
+    label: "Descubrir",
+    screenPt: "",
     btnColor: "rgba(230, 222, 212, 1)",
   },
   {
     id: "4",
-    label: "cuarta opcion",
+    label: "Ajustes",
     screenPt: "./searchView",
     btnColor: "rgba(230, 222, 212, 1)",
   },

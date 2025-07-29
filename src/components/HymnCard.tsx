@@ -6,19 +6,26 @@ import {
   View,
   StyleSheet,
 } from "react-native";
+
 import { hymnt } from "@/types/hymnTypes";
+import { useRouter } from "expo-router";
 
 interface HymnListProps {
   data: hymnt[];
 }
 
 const HymnsList = ({ data }: HymnListProps) => {
+  const router = useRouter();
+
   return (
     <FlatList
       data={data}
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
-        <TouchableOpacity style={styles.hymnCard}>
+        <TouchableOpacity
+          style={styles.hymnCard}
+          onPress={() => router.push(`/hymn/${item.id}`)}
+        >
           <Text style={styles.hymnNumber}>#{item.id}</Text>
           <Text style={styles.hymnName}>{item.title}</Text>
           <Text style={styles.tags}>
