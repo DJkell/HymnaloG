@@ -4,7 +4,8 @@ import * as SQLite from "expo-sqlite";
 export const createHymnsTable = async () => {
   const db = await openDbAsync();
 
-  /*   await db.execAsync(`DROP TABLE IF EXISTS hymns;`); //Voy a quitar esto en produccion */
+  await db.execAsync(`DROP TABLE IF EXISTS hymns;`); //Voy a quitar esto en produccion
+
   await db.execAsync(`
     CREATE TABLE IF NOT EXISTS hymns (
       id        INTEGER PRIMARY KEY NOT NULL,

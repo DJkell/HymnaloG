@@ -39,17 +39,20 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     marginVertical: 10,
     justifyContent: "space-around",
+    gap: 20,
+    marginHorizontal: 20,
   },
   button: {
     backgroundColor: "#ccc",
     padding: 8,
-    borderRadius: 8,
+    borderRadius: 5,
+    flex: 1,
   },
   activeButton: {
     backgroundColor: "#6A5ACD",
   },
   buttonText: {
-    color: "#fff",
-    fontWeight: "bold",
+    color: "Black",
+    /* fontWeight: "bold", */
   },
 });

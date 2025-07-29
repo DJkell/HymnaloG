@@ -42,9 +42,14 @@ export default function FavoriteHymns() {
 
   if (filtered.length == 0) {
     return (
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <Text>Aún No tienes Himnos guardados.</Text>
-      </View>
+      <>
+        <CategoryFilter selected={category} onSelect={handleCategorySelect} />
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <Text>Aún No tienes Himnos guardados.</Text>
+        </View>
+      </>
     );
   } else {
     return (
