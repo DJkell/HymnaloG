@@ -2,6 +2,7 @@ import { Stack } from "expo-router";
 import { Button, View, TouchableOpacity, Text } from "react-native";
 import { useRouter } from "expo-router";
 import BtnBack from "@/components/BtnBack";
+import BtnBackHeader from "@/components/BtnBackhead";
 
 export default function HymnLayout() {
   const router = useRouter();
@@ -21,24 +22,14 @@ export default function HymnLayout() {
 
           headerRight: () => (
             <>
-              <TouchableOpacity>
-                <Text>C</Text>
-              </TouchableOpacity>
-            </>
-          ),
-        })}
-      />
-      <Stack.Screen
-        name="FavoriteScreen"
-        options={({ route }: { route: { params: { id: string } } }) => ({
-          title: ` `,
-          headerLeft: () => <BtnBack Path="/" />,
-
-          headerRight: () => (
-            <>
-              <TouchableOpacity>
-                <Text>C</Text>
-              </TouchableOpacity>
+              <View style={{ flexDirection: "row", gap: 10 }}>
+                <BtnBackHeader
+                  margin={22}
+                  name="search"
+                  link="/HymnSearchScreen"
+                />
+                <BtnBackHeader margin={0} />
+              </View>
             </>
           ),
         })}

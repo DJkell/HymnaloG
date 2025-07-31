@@ -9,6 +9,9 @@ import {
 
 import { hymnt } from "@/types/hymnTypes";
 import { useRouter } from "expo-router";
+import BtnFav from "./btnfavorite";
+import { useState } from "react";
+import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 interface HymnListProps {
   data: hymnt[];
@@ -26,11 +29,20 @@ const HymnsList = ({ data }: HymnListProps) => {
           style={styles.hymnCard}
           onPress={() => router.push(`/hymn/${item.id}`)}
         >
-          <Text style={styles.hymnNumber}>#{item.id}</Text>
-          <Text style={styles.hymnName}>{item.title}</Text>
-          <Text style={styles.tags}>
-            {item.category} • {item.duration}
-          </Text>
+          <View style={{ maxWidth: "90%" }}>
+            <Text style={styles.hymnNumber}>#{item.id}</Text>
+            <Text style={styles.hymnName}>{item.title}</Text>
+            <Text style={styles.tags}>
+              {item.category} • {item.duration}
+            </Text>
+          </View>
+          <View style={{ justifyContent: "center" }}>
+            {item.favorit == 1 ? (
+              <MaterialIcons name="favorite" size={20} color="red" />
+            ) : (
+              <></>
+            )}
+          </View>
         </TouchableOpacity>
       )}
     />
@@ -55,6 +67,8 @@ const styles = StyleSheet.create({
     borderRadius: 12,
     padding: 16,
     marginVertical: 6,
+    flexDirection: "row",
+    justifyContent: "space-between",
   },
   hymnNumber: {
     fontWeight: "bold",

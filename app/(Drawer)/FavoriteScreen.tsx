@@ -6,11 +6,14 @@ import HymnsList from "@/components/HymnCard";
 import { useFocusEffect } from "expo-router";
 import React from "react";
 import CategoryFilter from "@/components/CategoryFilter";
+import Btnfiltrer from "@/components/Btnfiltro";
+import BtnFiltrer from "@/components/Btnfiltro";
 
 export default function FavoriteHymns() {
   const [HymnsF, setHymnsF] = useState<hymnt[]>([]);
   const [filtered, setFiltered] = useState<hymnt[]>([]);
   const [category, setCategory] = useState<string | null>(null);
+  const [showFilters, setShowFilters] = useState(false);
 
   const loadFavorites = async () => {
     const datafav = await getFav();
@@ -40,23 +43,64 @@ export default function FavoriteHymns() {
     applyFilters(HymnsF, cat);
   };
 
+  const handleBtnFiltrer = () => {
+    setShowFilters((prev) => !prev);
+  };
+
   if (filtered.length == 0) {
     return (
-      <>
-        <CategoryFilter selected={category} onSelect={handleCategorySelect} />
+      <View style={styles.container}>
+        <View style={{ padding: 10 }}>
+          <Btnfiltrer
+            showFilters={showFilters}
+            onSelect={handleBtnFiltrer}
+            height={40}
+            width={"100%"}
+          />
+
+          {showFilters && (
+            <CategoryFilter
+              selected={category}
+              onSelect={handleCategorySelect}
+            />
+          )}
+        </View>
         <View
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
           <Text>Aún No tienes Himnos guardados.</Text>
         </View>
-      </>
+      </View>
     );
   } else {
     return (
-      <View style={{ flex: 1 }}>
-        <CategoryFilter selected={category} onSelect={handleCategorySelect} />
+      <View style={styles.container}>
+        <View style={{ padding: 10 }}>
+          <Btnfiltrer
+            showFilters={showFilters}
+            onSelect={handleBtnFiltrer}
+            height={40}
+            width={"100%"}
+          />
+
+          {showFilters && (
+            <CategoryFilter
+              selected={category}
+              onSelect={handleCategorySelect}
+            />
+          )}
+        </View>
+
         <HymnsList data={filtered} />
       </View>
     );
   }
 }
+const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 16,
+    paddingVertical: 6,
+    backgroundColor: "#3C2A4D",
+    flex: 1,
+  },
+});

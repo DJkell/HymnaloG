@@ -11,6 +11,7 @@ import { getAllHymns } from "@/db/db.getHymns";
 import { hymnt } from "@/types/hymnTypes";
 import HymnsList from "@/components/HymnCard";
 import SearchBar from "@/components/SearchBar";
+import Btnfiltrer from "@/components/Btnfiltro";
 import CategoryFilter from "@/components/CategoryFilter";
 
 const HymnSearchScreen = () => {
@@ -18,6 +19,7 @@ const HymnSearchScreen = () => {
   const [category, setCategory] = useState<string | null>(null);
   const [allHymns, setAllHymns] = useState<hymnt[]>([]);
   const [filHymns, setFilHymns] = useState<hymnt[]>([]);
+  const [showFilters, setShowFilters] = useState(false);
 
   useEffect(() => {
     const loadHymns = async () => {
@@ -25,6 +27,7 @@ const HymnSearchScreen = () => {
       console.log("Total de himnos cargados:", HymnsFromDb.length);
       setAllHymns(HymnsFromDb);
       setFilHymns(HymnsFromDb);
+      console.log("Himnos procesados" + allHymns.length);
     };
 
     loadHymns();
@@ -53,15 +56,33 @@ const HymnSearchScreen = () => {
     applyFilters(query, cat);
   };
 
+  const handleBtnFiltrer = () => {
+    setShowFilters((prev) => !prev);
+  };
   return (
     <View style={styles.container}>
-      <SearchBar
-        placeholder="Buscar por número o nombre"
-        value={query}
-        onChangeText={filSearch}
-      />
+      <View
+        style={{
+          flexDirection: "row",
+          justifyContent: "space-between",
+          gap: 20,
+        }}
+      >
+        <SearchBar
+          placeholder="Buscar por número o nombre"
+          value={query}
+          onChangeText={filSearch}
+        />
 
-      <CategoryFilter selected={category} onSelect={handleCategorySelect} />
+        <Btnfiltrer
+          showFilters={showFilters}
+          onSelect={handleBtnFiltrer}
+          width={"20%"}
+        />
+      </View>
+      {showFilters && (
+        <CategoryFilter selected={category} onSelect={handleCategorySelect} />
+      )}
 
       <HymnsList data={filHymns} />
     </View>

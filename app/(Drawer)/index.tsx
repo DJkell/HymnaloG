@@ -16,7 +16,7 @@ import { useRouter } from "expo-router";
 import { useEffect } from "react";
 import { insertHymns } from "@/db/db.insertHymn";
 import { createHymnsTable } from "@/db/dbCreation";
-/* import { resetHymns } from "@/db/resetdb"; */
+import { resetHymns } from "@/db/resetdb";
 
 /* import HymnsFull from "@/components/HymnCard"; */
 
@@ -25,7 +25,7 @@ export default function index() {
   useEffect(() => {
     (async () => {
       await createHymnsTable();
-      /*      await resetHymns();  */ //Voy a quitar esto en produccion
+      /*    await resetHymns(); //Voy a quitar esto en produccion */
       await insertHymns();
     })();
   }, []);

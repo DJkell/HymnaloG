@@ -16,6 +16,9 @@ import { useRouter } from "expo-router";
 import { toggleFavorite } from "@/db/shangeFav";
 import { useFocusEffect } from "expo-router";
 import React, { useCallback } from "react";
+import BtnBack from "@/components/BtnBack";
+import BtnFav from "@/components/btnfavorite";
+import { rgbaColor } from "react-native-reanimated/lib/typescript/Colors";
 
 ("/app/hymn/[id].tsx");
 
@@ -64,10 +67,16 @@ export default function HymnContent() {
   return (
     <>
       <ScrollView contentContainerStyle={styles.container}>
-        <View style={{ alignItems: "flex-end" }}>
-          <TouchableOpacity onPress={handleFavoriteToggle}>
-            <Text>Fav</Text>
-          </TouchableOpacity>
+        <View
+          style={{
+            justifyContent: "space-between",
+            flexDirection: "row",
+            alignItems: "center",
+            marginBottom: 20,
+          }}
+        >
+          <Text style={styles.num}>{`Himno #${hymn.id}`}</Text>
+          <BtnFav onPressP={handleFavoriteToggle} State={hymn.favorit} />
         </View>
 
         <Text style={styles.title}>{hymn.title}</Text>
@@ -88,6 +97,12 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: "bold",
     marginBottom: 4,
+  },
+  num: {
+    fontSize: 18,
+    fontWeight: "bold",
+    marginBottom: 4,
+    color: "rgba(88, 88, 88, 0.7)",
   },
   category: {
     fontSize: 14,

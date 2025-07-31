@@ -2,22 +2,41 @@
   {
     "id": 1,
     "title": "A Jesucristo ven sin tardar",
-    "category": "alegre",
+    "category": ["alegre", "evangelismo"],
     "duration": "corto",
+    "example": "https://www.youtube.com/results?search_query=A+Jesucristo+ven+sin+tardar+hymn",
     "content": "1\nA Jesucristo ven sin tardar,\nQue entre nosotros hoy él está,\nY te convida con dulce afán\nTierno diciendo: «Ven.»\n\nCORO:\n¡Oh!, cuán grata es nuestra reunión,\nCuando allá, Señor, en tu mansión,\nContigo estemos en comunión,\nGozando eterno bien.\n\n2\nPiensa que él sólo puede colmar\nTu triste pecho de gozo y paz;\nY porque anhela tu bienestar,\nVuelve a decirte: «Ven».\n\n3\nSu voz escucha sin vacilar,\nY grato acepta lo que hoy te da.\nTal vez mañana no habrá lugar\nNo te detengas, ven."
   },
   {
     "id": 2,
     "title": "A la batalla y a la victoria",
-    "category": "alegre",
-    "duration": "corto",
-    "content": "1\n¡A la batalla y a la victoria!\nVamos con Dios nuestro Rey,\nQue con su brazo fuerte y robusto,\nSiempre defiende su grey.\nPues sin temor avancemos\nEntusiasmados por fe,\nMientras alegres cantemos\nGloria a Dios nuestro Rey.\n\nCORO:\nNo es la victoria de los ligeros,\nNo de los fuertes la paz;\nMás de los fieles en Cristo\nEs el eterno solaz.\n\n2\n¡A la batalla y a la victoria!\n¿Quién será este buen Rey?\n¿Cuáles las tropas que así lo siguen\nEn esta lucha de fe\nEs Jehová el Valiente\nDe los Señores Señor,\nAcompañado por todos\nLos que aprecian su amor.\n\n3\n¡A la batalla y a la victoria!\nBajo tan buen General\nDerrotaremos, ya enseguida,\nTodas las fuerzas del mal.\nReinos y tropas, aún mundos,\nTodos al fin pasarán,\nMás los amados en Cristo\nVida eterna tendrán."
+    "category": ["valiente", "esperanza"],
+    "duration": "largo",
+    "example": "https://www.youtube.com/results?search_query=A+la+batalla+y+a+la+victoria+hymn",
+    "content": "1\n¡A la batalla y a la victoria!\nVamos con Dios nuestro Rey,\nQue con su brazo fuerte y robusto,\nSiempre defiende su grey.\n\nCORO:\nNo es la victoria de los ligeros,\nNo de los fuertes la paz;\nMás de los fieles en Cristo\nEs el eterno solaz.\n\n2\n¡A la batalla y a la victoria!\n¿Quién será este buen Rey?\n¿Cuáles las tropas que así lo siguen\nEn esta lucha de fe?\nEs Jehová el Valiente\nDe los Señores Señor,\nAcompañado por todos\nLos que aprecian su amor.\n\n3\n¡A la batalla y a la victoria!\nBajo tan buen General\nDerrotaremos, ya enseguida,\nTodas las fuerzas del mal.\nReinos y tropas, aún mundos,\nTodos al fin pasarán,\nMás los amados en Cristo\nVida eterna tendrán."
   },
   {
     "id": 3,
-    "title": "tercero",
-    "category": "solemne",
+    "title": "A la casa de Jairo iba Jesús",
+    "category": ["reflexivo", "esperanza"],
     "duration": "corto",
-    "content": "Alabad al Señor porque El es bueno, Alabad al Señor porque El es bueno, Alabad al Señor porque Él es bueno. Porque para siempre es su misericordia."
+    "example": "https://www.youtube.com/results?search_query=A+la+casa+de+Jairo+iba+Jesús+hymn",
+    "content": "1\nA la casa de Jairo iba Jesús,\nUna gran multitud iba tras él,\nY una pobre mujer llena de fe,\nNo miró la multitud, fue y lo tocó.\n\nCORO:\nHas tú cual la mujer que fue y tocó\nEl borde del vestido de Jesús\nVirtud salió de él, y ella sanó\nY si le tocas tú, sanas también.\n\n2\nNumeroso, aquel pueblo era grande,\nUna parte creía en el Señor,\nPero el resto eran enemigos y curiosos,\nHoy en día no se encuentra otro mejor.\n\n3\nDice Cristo: «Alguno me ha tocado»\nLe contestan: «La multitud te oprime»\nPero al tocarme virtud salió de mí\nY con ella alguno ha sanado.\n\nCORO:\nYo fui quien te tocó, mi buen Señor,\nMi mal ningún doctor pudo sanar,\nTu fama llegó a mí, y yo vine a ti\nY yo sanada estoy, ¡Perdóname!"
+  },
+  {
+    "id": 4,
+    "title": "A la lucha",
+    "category": ["valiente"],
+    "duration": "largo",
+    "example": "https://www.youtube.com/results?search_query=A+la+lucha+hymn",
+    "content": "1\nYa las huestes se aprestan para la batalla,\nEs Jesús el capitán que a todos nos guiará,\nY con él a la cabeza no hay que vacilar,\nDe seguro al triunfo nos llevará.\n\nCORO:\nYo quiero estar con Cristo en lo rudo de la lid,\nYo quiero siempre listo, valiente, combatir\nHasta que en gloria pueda verle,\nMi carrera al terminar;\nY vida eterna con él gozar.\n\n2\nLas legiones de Jesús, de triunfo en triunfo avanzan,\n¿No las ves con qué valor combaten contra el mal?\n¿Puedes tú quedar dormido o indiferente\nCuando otros luchan sin descansar?\n\n3\nDate prisa, no vaciles, él te necesita;\nSi amas a Jesús, también a otros amarás,\nY si andan en las sendas de la iniquidad,\nA los pies de Cristo los llevarás.\n\n4\nEs la mies muy grande y los obreros son muy pocos;\nDesde hoy mi Salvador hallarme él podrá\nTrabajando en su mies en busca de las almas\nY con su poder él me sostendrá."
+  },
+  {
+    "id": 5,
+    "title": "A la siega acudid",
+    "category": ["valiente", "evangelismo"],
+    "duration": "largo",
+    "example": "https://www.youtube.com/results?search_query=A+la+siega+acudid+hymn",
+    "content": "1\nSomos obreros del Señor,\nLa mies segamos con amor,\nLas nuevas damos de la salvación\nDe Cristo al pecador;\nHoy trabajamos por amor\nA Cristo nuestro Salvador,\nQue por nosotros vida dio\nEn el Calvario do murió.\n\nCORO:\nA la siega acudid, el Maestro os llama,\nTodos deben trabajar tarde y mañana.\nCorre el tiempo y jamás,\nNunca, hermanos, volverá;\n¡Ven, obrero! Ven, trabaja ya.\n\n2\nEl evangelio predicad\nA todo el mundo sin cesar,\nY sin temor y con lealtad\nHoy su bandera levantad;\nEn nuestras manos él confió\nEsta gran comisión de amor;\nLas nuevas dad, no vaciléis,\nQue la victoria obtendréis.\n\n3\nHoras y días pasarán,\nEl tiempo nunca volverá;\nSi no predicas a Jesús,\nMuchos jamás verán la luz;\nHoy es el día de salvación,\nEl mundo pereciendo está,\n¡Oh!, no desprecies el honor\nQue Jesucristo hoy te da."
   }
 ]

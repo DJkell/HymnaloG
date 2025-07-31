@@ -14,7 +14,9 @@ export const createHymnsTable = async () => {
       duration  TEXT    NOT NULL,
       content   TEXT    NOT NULL,
       favorit  INTEGER DEFAULT 0,    
-      save  INTEGER DEFAULT 0 
+      save  INTEGER DEFAULT 0,
+      example   TEXT
     );
   `);
+  console.log("se ha creado la tabla");
 };

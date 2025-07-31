@@ -8,9 +8,18 @@ export const insertHymns = async () => {
 
     for (const hymn of hymnData) {
       await db.runAsync(
-        `INSERT OR IGNORE INTO hymns (id, title, category, duration, content, favorit, save)
-       VALUES (?, ?, ?, ?, ?, ?, ?)`,
-        [hymn.id, hymn.title, hymn.category, hymn.duration, hymn.content, 0, 0]
+        `INSERT OR IGNORE INTO hymns (id, title, category, duration, content, favorit, save, example)
+       VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
+        [
+          hymn.id,
+          hymn.title,
+          hymn.category,
+          hymn.duration,
+          hymn.content,
+          0,
+          0,
+          hymn.example,
+        ]
       );
     }
   } catch (err) {
