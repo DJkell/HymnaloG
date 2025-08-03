@@ -15,17 +15,17 @@ const SearchBar: React.FC<SearchBarProps> = ({
 }) => {
   return (
     <View style={styles.input}>
-      <TextInput
-        placeholder={placeholder || "Buscar..."}
-        value={value}
-        onChangeText={onChangeText}
-      />
-
       <Ionicons
         name="search"
         size={24}
         color="black"
         style={{ marginEnd: 5 }}
+      />
+      <TextInput
+        style={{ flex: 1, fontSize: 16 }}
+        placeholder={placeholder || "Buscar..."}
+        value={value}
+        onChangeText={onChangeText}
       />
     </View>
   );
@@ -37,13 +37,14 @@ const styles = StyleSheet.create({
     height: 50,
     maxHeight: 60,
     flexDirection: "row",
-    justifyContent: "space-between",
+    justifyContent: "flex-start",
     alignItems: "center",
-    backgroundColor: "#f31667ff",
+    backgroundColor: "#E6DDCD",
     padding: 4,
-    borderRadius: 10,
+    borderRadius: 13,
     fontSize: 16,
     marginBottom: 10,
+    paddingHorizontal: 10,
   },
 });
 

@@ -27,7 +27,7 @@ export default function BtnBackHeader({
     >
       <Ionicons
         style={{ marginRight: margin ?? 22 }}
-        name={name ?? "home-sharp"}
+        name={name ?? "home"}
         size={size ?? 25}
         color={color ?? "black"}
       />

@@ -4,4 +4,5 @@ export interface ListItemsOp {
   label: string;
   screenPt: string;
   btnColor: string;
+  Icon?: string;
 }

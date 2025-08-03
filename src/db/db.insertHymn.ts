@@ -13,7 +13,7 @@ export const insertHymns = async () => {
         [
           hymn.id,
           hymn.title,
-          hymn.category,
+          hymn.category.toString(),
           hymn.duration,
           hymn.content,
           0,

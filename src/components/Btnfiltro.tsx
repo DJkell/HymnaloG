@@ -31,7 +31,7 @@ export default function Btnfiltrer({
 
 const styles = StyleSheet.create({
   btncontainer: {
-    backgroundColor: "red",
+    backgroundColor: "#E6DDCD",
     justifyContent: "center",
     alignItems: "center",
     maxHeight: 50,

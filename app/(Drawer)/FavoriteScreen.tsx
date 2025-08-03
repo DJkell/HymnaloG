@@ -8,6 +8,7 @@ import React from "react";
 import CategoryFilter from "@/components/CategoryFilter";
 import Btnfiltrer from "@/components/Btnfiltro";
 import BtnFiltrer from "@/components/Btnfiltro";
+import BtnBasic from "@/components/BtnBasic";
 
 export default function FavoriteHymns() {
   const [HymnsF, setHymnsF] = useState<hymnt[]>([]);
@@ -68,7 +69,16 @@ export default function FavoriteHymns() {
         <View
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
-          <Text>Aún No tienes Himnos guardados.</Text>
+          <Text style={{ fontSize: 20 }}>Aún no tienes himnos guardados</Text>
+          <BtnBasic
+            text="BUSCAR"
+            link="/HymnSearchScreen"
+            width={"60%"}
+            bgColor="#895D3F"
+            TextColor="#E6DED4"
+            height={50}
+            marginT={30}
+          />
         </View>
       </View>
     );
@@ -100,7 +110,7 @@ const styles = StyleSheet.create({
   container: {
     paddingHorizontal: 16,
     paddingVertical: 6,
-    backgroundColor: "#3C2A4D",
+    /*     backgroundColor: "#3C2A4D", */
     flex: 1,
   },
 });

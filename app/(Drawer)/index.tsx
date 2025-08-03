@@ -7,6 +7,7 @@ import {
   View,
   ScrollView,
   ImageBackground,
+  Image,
 } from "react-native";
 import OptionsBtn from "@/components/OptionsBtn";
 import { dataBtnHome } from "@/data/OptionsBtnData";
@@ -17,8 +18,7 @@ import { useEffect } from "react";
 import { insertHymns } from "@/db/db.insertHymn";
 import { createHymnsTable } from "@/db/dbCreation";
 import { resetHymns } from "@/db/resetdb";
-
-/* import HymnsFull from "@/components/HymnCard"; */
+import HomeBox from "@/components/homebox";
 
 export default function index() {
   //*Aqui inicializamos nuestra base de datos creando la tabla e insertando los valores*/
@@ -35,50 +35,65 @@ export default function index() {
 
   /*Aqui extraimos el alto y ancho de nuestra pestana para crear el efecto responsive*/
   const { width, height } = useWindowDimensions();
-  const intablet = width > 490;
+  const inbigScreen = width > 490;
+  const intablet = width > 490 && width < 830; // Definimos un rango para tabletas
+  const inpc = width >= 830; // Definimos un rango para PC
 
-  /*Aqui Configuramos el router para usarlo mas abajo*/
   return (
-    <ImageBackground
-      source={require("@/assets/fondoHymHome.jpg")}
-      style={[styles.backg, { padding: 20 }]}
-      resizeMode="cover"
-    >
+    <View style={[styles.backg, { paddingHorizontal: inpc ? "20%" : "7%" }]}>
+      <StatusBar backgroundColor="#21211F" style="light" />
+      <View
+        style={{
+          width: inbigScreen ? 300 : 200,
+          height: inbigScreen ? 300 : 200,
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 0,
+          backgroundColor: "#21211F",
+          borderBottomRightRadius: "100%",
+          borderTopRightRadius: 1,
+        }}
+      ></View>
+      {intablet ? (
+        <HomeBox marginTop={"-30%"} />
+      ) : (
+        <HomeBox marginTop={inpc ? "-10%" : "25%"} />
+      )}
       <View
         style={[
           styles.headerBox,
           {
             height: height * 0.4,
-            maxHeight: intablet ? 300 : 400,
-            marginTop: intablet ? -600 : 200,
-            backgroundColor: intablet
-              ? "rgba(88, 88, 88, 0.0)"
-              : "rgba(88, 88, 88, 0.7)",
+            maxHeight: inbigScreen ? 300 : 400,
+            marginTop: inbigScreen ? 20 : "8%",
           },
         ]}
       >
+        <Text style={styles.textContainer}>OPCIONES</Text>
         <FlatList
           data={dataBtnHome}
           keyExtractor={(item) => item.id}
-          numColumns={intablet ? 4 : 2}
+          numColumns={2}
           columnWrapperStyle={{
             justifyContent: intablet ? "center" : "space-between",
-            padding: 10,
           }}
-          contentContainerStyle={{ padding: 16, justifyContent: "center" }}
+          contentContainerStyle={[
+            styles.contentContainerStyle,
+            { paddingBottom: 20 },
+          ]}
           renderItem={({ item }: { item: ListItemsOp }) => (
             <OptionsBtn
               texto={item.label}
               colorP={item.btnColor}
               option={item.id}
               onpressp={() => router.push(item.screenPt)}
+              Icon={item.Icon}
             />
           )}
         />
       </View>
-
-      {/*     <HymnsFull /> */}
-    </ImageBackground>
+    </View>
   );
 }
 
@@ -86,13 +101,26 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
   },
+  contentContainerStyle: {
+    marginTop: 15,
+  },
+  textContainer: {
+    fontSize: 20,
+    color: "#E6DED4",
+    fontWeight: "bold",
+    textAlign: "center",
+    textTransform: "uppercase",
+    fontFamily: "Poppins_600SemiBold",
+  },
   backg: {
     flex: 1,
-    backgroundColor: "black",
+    backgroundColor: "#5F7862",
     justifyContent: "center",
+    padding: "7%",
   },
+
   headerBox: {
-    backgroundColor: "rgba(88, 88, 88, 0.7)",
+    padding: 0,
   },
   headerbuscar: {
     backgroundColor: "#E6DED4",

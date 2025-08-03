@@ -19,6 +19,8 @@ import React, { useCallback } from "react";
 import BtnBack from "@/components/BtnBack";
 import BtnFav from "@/components/btnfavorite";
 import { rgbaColor } from "react-native-reanimated/lib/typescript/Colors";
+import CopyBtn from "@/components/CopyBtn";
+import BtnBasic from "@/components/BtnBasic";
 
 ("/app/hymn/[id].tsx");
 
@@ -76,11 +78,22 @@ export default function HymnContent() {
           }}
         >
           <Text style={styles.num}>{`Himno #${hymn.id}`}</Text>
-          <BtnFav onPressP={handleFavoriteToggle} State={hymn.favorit} />
+          <View
+            style={{
+              flexDirection: "row",
+              gap: 15,
+              alignItems: "center",
+              minWidth: "50%",
+              backgroundColor: "black",
+            }}
+          >
+            <CopyBtn hymnTitle={hymn.title} hymnContent={hymn.content} />
+            <BtnFav onPressP={handleFavoriteToggle} State={hymn.favorit} />
+          </View>
         </View>
 
         <Text style={styles.title}>{hymn.title}</Text>
-        <Text style={styles.category}>{hymn.category}</Text>
+        <Text style={styles.category}>{`${hymn.category} `}</Text>
         <Text style={styles.lyrics}>{hymn.content}</Text>
       </ScrollView>
     </>

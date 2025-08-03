@@ -69,7 +69,7 @@ const HymnSearchScreen = () => {
         }}
       >
         <SearchBar
-          placeholder="Buscar por número o nombre"
+          placeholder="Buscar por número o nombre  "
           value={query}
           onChangeText={filSearch}
         />
@@ -92,7 +92,7 @@ const HymnSearchScreen = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    backgroundColor: "#3C2A4D",
+    backgroundColor: "#ffffffff",
     flex: 1,
   },
   input: {

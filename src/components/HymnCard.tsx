@@ -29,12 +29,18 @@ const HymnsList = ({ data }: HymnListProps) => {
           style={styles.hymnCard}
           onPress={() => router.push(`/hymn/${item.id}`)}
         >
-          <View style={{ maxWidth: "90%" }}>
-            <Text style={styles.hymnNumber}>#{item.id}</Text>
-            <Text style={styles.hymnName}>{item.title}</Text>
-            <Text style={styles.tags}>
+          <View
+            style={{
+              maxWidth: "90%",
+              flexDirection: "row",
+              alignItems: "center",
+            }}
+          >
+            <Text style={styles.hymnNumber}>{`${item.id}   `}</Text>
+            <Text style={styles.hymnName}>{` ${item.title}`}</Text>
+            {/*           <Text style={styles.tags}>
               {item.category} • {item.duration}
-            </Text>
+            </Text> */}
           </View>
           <View style={{ justifyContent: "center" }}>
             {item.favorit == 1 ? (
@@ -63,12 +69,13 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   hymnCard: {
-    backgroundColor: "#F5F1E3",
     borderRadius: 12,
     padding: 16,
     marginVertical: 6,
     flexDirection: "row",
     justifyContent: "space-between",
+    borderBottomWidth: 1,
+    borderBottomColor: "#E6DDCD",
   },
   hymnNumber: {
     fontWeight: "bold",
