@@ -1,7 +1,6 @@
 import { GestureHandlerRootView } from "react-native-gesture-handler";
 import { Drawer } from "expo-router/drawer";
 import { Text, TouchableOpacity, StyleSheet, View } from "react-native";
-import BtnBackHome from "@/components/BtnBackhead";
 import BtnBackHeader from "@/components/BtnBackhead";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -17,7 +16,7 @@ export default function DrawerLayout() {
         },
         drawerActiveBackgroundColor: "#E6DDCD", // este es mi ítem activo
         drawerActiveTintColor: "#895D3F", // Texto de es mi ítem activo
-        drawerInactiveTintColor: "##21211F", // Texto ítems normales
+        drawerInactiveTintColor: "#21211F", // Texto ítems normales
         drawerLabelStyle: {
           marginLeft: -5,
           fontSize: 15,
@@ -91,6 +90,23 @@ export default function DrawerLayout() {
                   name="search"
                   link="/HymnSearchScreen"
                 />
+                <BtnBackHeader />
+              </View>
+            </>
+          ),
+        }}
+      />
+      <Drawer.Screen
+        name="SettingsScreen"
+        options={{
+          drawerLabel: "Configuracion",
+          title: "Ajustes",
+          drawerIcon: () => (
+            <Ionicons name="settings" size={25} color="#895D3F" />
+          ),
+          headerRight: () => (
+            <>
+              <View style={{ flexDirection: "row", gap: 10 }}>
                 <BtnBackHeader />
               </View>
             </>

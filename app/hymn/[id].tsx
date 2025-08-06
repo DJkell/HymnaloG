@@ -21,6 +21,9 @@ import BtnFav from "@/components/btnfavorite";
 import { rgbaColor } from "react-native-reanimated/lib/typescript/Colors";
 import CopyBtn from "@/components/CopyBtn";
 import BtnBasic from "@/components/BtnBasic";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import Toast from "react-native-root-toast";
+import { RootSiblingParent } from "react-native-root-siblings";
 
 ("/app/hymn/[id].tsx");
 
@@ -32,6 +35,7 @@ export default function HymnContent() {
   const { id } = useLocalSearchParams();
   const [hymn, setHymn] = useState<hymnt | null>(null);
   const [loading, setLoading] = useState(true);
+  const [fontSize, setFontSize] = useState(18);
   const router = useRouter();
 
   useFocusEffect(
@@ -59,16 +63,33 @@ export default function HymnContent() {
     if (!hymn) return;
     const newStatus = await toggleFavorite(hymn.id, hymn.favorit);
     setHymn({ ...hymn, favorit: newStatus });
-    console.log(`El Himno #${hymn.id} se le cambia el estado de favoritos`);
+    hymn.favorit == 0
+      ? showCopiedToast(`Himno #${hymn.id} se agregó a favoritos ♥️​`)
+      : showCopiedToast(`Himno #${hymn.id} ya no es favorito 💔`);
   };
 
   if (loading || !hymn) {
     return <ActivityIndicator size="large" style={{ marginTop: 40 }} />;
   }
 
+  const showCopiedToast = (Text: string) => {
+    Toast.show(`${Text}`, {
+      duration: Toast.durations.SHORT,
+      position: Toast.positions.CENTER,
+      shadow: true,
+      animation: true,
+      hideOnPress: true,
+    });
+  };
+
   return (
-    <>
-      <ScrollView contentContainerStyle={styles.container}>
+    <RootSiblingParent>
+      <ScrollView
+        contentContainerStyle={[
+          styles.container,
+          { backgroundColor: "#5F7862" },
+        ]}
+      >
         <View
           style={{
             justifyContent: "space-between",
@@ -83,20 +104,45 @@ export default function HymnContent() {
               flexDirection: "row",
               gap: 15,
               alignItems: "center",
-              minWidth: "50%",
-              backgroundColor: "black",
             }}
           >
-            <CopyBtn hymnTitle={hymn.title} hymnContent={hymn.content} />
+            <MaterialCommunityIcons
+              name="format-font-size-decrease"
+              size={28}
+              color={fontSize <= 20 ? "red" : "black"}
+              onPress={() => {
+                if (fontSize > 20) {
+                  setFontSize(fontSize - 2);
+                }
+              }}
+            />
+            <MaterialCommunityIcons
+              name="format-font-size-increase"
+              size={28}
+              color={fontSize >= 28 ? "red" : "black"}
+              onPress={() => {
+                if (fontSize < 28) {
+                  setFontSize(fontSize + 2);
+                }
+              }}
+            />
+            <CopyBtn
+              hymnTitle={hymn.title}
+              hymnContent={hymn.content}
+              onCopied={() => showCopiedToast(`Himno Copiado 📄​`)}
+            />
             <BtnFav onPressP={handleFavoriteToggle} State={hymn.favorit} />
           </View>
         </View>
 
         <Text style={styles.title}>{hymn.title}</Text>
         <Text style={styles.category}>{`${hymn.category} `}</Text>
-        <Text style={styles.lyrics}>{hymn.content}</Text>
+        <Text style={[styles.lyrics, { fontSize: fontSize }]}>
+          {hymn.content}
+        </Text>
+        <Toast />
       </ScrollView>
-    </>
+    </RootSiblingParent>
   );
 }
 
@@ -124,7 +170,6 @@ const styles = StyleSheet.create({
     marginBottom: 16,
   },
   lyrics: {
-    fontSize: 18,
     lineHeight: 28,
   },
 });

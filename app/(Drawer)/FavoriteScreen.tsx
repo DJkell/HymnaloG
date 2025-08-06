@@ -7,14 +7,16 @@ import { useFocusEffect } from "expo-router";
 import React from "react";
 import CategoryFilter from "@/components/CategoryFilter";
 import Btnfiltrer from "@/components/Btnfiltro";
-import BtnFiltrer from "@/components/Btnfiltro";
 import BtnBasic from "@/components/BtnBasic";
+import { loadUserSettings } from "@/utils/settings";
 
 export default function FavoriteHymns() {
   const [HymnsF, setHymnsF] = useState<hymnt[]>([]);
   const [filtered, setFiltered] = useState<hymnt[]>([]);
   const [category, setCategory] = useState<string | null>(null);
   const [showFilters, setShowFilters] = useState(false);
+  const [settings, setSettings] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const loadFavorites = async () => {
     const datafav = await getFav();
@@ -23,7 +25,13 @@ export default function FavoriteHymns() {
   };
 
   useEffect(() => {
+    const init = async () => {
+      const config = await loadUserSettings();
+      setSettings(config);
+      setLoading(false);
+    };
     loadFavorites();
+    init();
   }, []);
 
   useFocusEffect(

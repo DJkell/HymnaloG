@@ -6,33 +6,51 @@ interface HomeBoxProps {
   marginTop?: number | string;
   MxHeight?: number | string;
   MxWidth?: number | string;
+  borderColor?: string;
+  ColorText?: string;
+  ColorSubText?: string;
+  btnColor?: string;
+  blurColor?: string;
+  borderSize?: number;
 }
 
 export default function HomeBox({
   marginTop,
   MxHeight,
   MxWidth,
+  borderColor,
+  ColorText,
+  ColorSubText,
+  btnColor,
+  borderSize,
+  blurColor,
 }: HomeBoxProps) {
   return (
     <BlurView
       intensity={30}
-      tint="dark"
+      tint={blurColor ?? "dark"}
       style={[
         styles.titleBox,
         {
           marginTop: marginTop ?? "25%",
           maxHeight: MxHeight ?? "40%",
           maxWidth: MxWidth ?? "100%",
+          borderColor: borderColor ?? "#E6DED4",
+          borderWidth: borderSize ?? 8,
         },
       ]}
     >
-      <Text style={styles.text}>Himnario de Gloria</Text>
-      <Text style={styles.subtext}>Mas de 500 Himnos para alabar al Señor</Text>
+      <Text style={[styles.text, { color: ColorText ?? "#E6DED4" }]}>
+        Himnario de Gloria
+      </Text>
+      <Text style={[styles.subtext, { color: ColorSubText ?? "#E6DED4" }]}>
+        Mas de 500 Himnos para alabar al Señor
+      </Text>
       <BtnBasic
         text="BUSCAR"
         link="/HymnSearchScreen"
         width={"60%"}
-        bgColor="#21211F"
+        bgColor={btnColor ?? "#21211F"}
         TextColor="#E6DED4"
         height={50}
         marginT={30}
@@ -43,7 +61,7 @@ export default function HomeBox({
 const styles = StyleSheet.create({
   titleBox: {
     flex: 1,
-    borderWidth: 8,
+
     justifyContent: "center",
     overflow: "hidden",
     borderColor: "#E6DED4",
@@ -59,10 +77,10 @@ const styles = StyleSheet.create({
     shadowRadius: 10,
 
     // Android
+    elevation: 0,
   },
   text: {
     fontSize: 30,
-    color: "#E6DED4",
     fontWeight: "bold",
     textAlign: "center",
     textTransform: "uppercase",
@@ -70,7 +88,6 @@ const styles = StyleSheet.create({
   },
   subtext: {
     fontSize: 15,
-    color: "#E6DED4",
     textAlign: "center",
     marginTop: 10,
     width: "80%",

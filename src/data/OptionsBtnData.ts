@@ -26,7 +26,7 @@ export const dataBtnHome: ListItemsOp[] = [
   {
     id: "4",
     label: "Ajustes",
-    screenPt: "./searchView",
+    screenPt: "./SettingsScreen",
     btnColor: "#895D3F",
     Icon: "settings",
   },

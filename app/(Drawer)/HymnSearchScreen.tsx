@@ -13,6 +13,7 @@ import HymnsList from "@/components/HymnCard";
 import SearchBar from "@/components/SearchBar";
 import Btnfiltrer from "@/components/Btnfiltro";
 import CategoryFilter from "@/components/CategoryFilter";
+import { loadUserSettings } from "@/utils/settings";
 
 const HymnSearchScreen = () => {
   const [query, setQuery] = useState("");
@@ -20,6 +21,8 @@ const HymnSearchScreen = () => {
   const [allHymns, setAllHymns] = useState<hymnt[]>([]);
   const [filHymns, setFilHymns] = useState<hymnt[]>([]);
   const [showFilters, setShowFilters] = useState(false);
+  const [settings, setSettings] = useState("#e90c0cff");
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadHymns = async () => {
@@ -29,7 +32,14 @@ const HymnSearchScreen = () => {
       setFilHymns(HymnsFromDb);
       console.log("Himnos procesados" + allHymns.length);
     };
+    const init = async () => {
+      const config = await loadUserSettings();
+      setSettings(config);
+      setLoading(false);
+    };
 
+    init();
+    console.log("Configuración cargada:", settings);
     loadHymns();
   }, []);
 

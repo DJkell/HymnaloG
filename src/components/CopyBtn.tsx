@@ -6,13 +6,18 @@ import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 interface CopyButtonProps {
   hymnTitle: string;
   hymnContent: string;
+  onCopied?: () => void;
 }
 
-export default function CopyBtn({ hymnTitle, hymnContent }: CopyButtonProps) {
+export default function CopyBtn({
+  hymnTitle,
+  hymnContent,
+  onCopied,
+}: CopyButtonProps) {
   const handleCopy = async () => {
     const textToCopy = `${hymnTitle}\n\n${hymnContent}`;
     await Clipboard.setStringAsync(textToCopy);
-    Alert.alert("Copiado", "El himno se ha copiado al portapapeles.");
+    onCopied?.();
   };
 
   return (

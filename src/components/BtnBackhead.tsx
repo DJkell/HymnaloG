@@ -5,7 +5,7 @@ import { useRouter } from "expo-router";
 interface btnLocation {
   link?: string;
   size?: number;
-  name?: string;
+  name?: string | undefined;
   margin?: number;
   color?: string;
 }
