@@ -5,6 +5,7 @@ import {
   StyleSheet,
   Text,
   ViewStyle,
+  Settings,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -19,7 +20,8 @@ interface OptionsHProps {
   colorfill?: string;
   IconColorfill?: string;
   Bcolor?: string;
-  BZise?: number;
+  BZise: number;
+  fontSize?: number;
 }
 
 export default function OptionsBtn({
@@ -33,6 +35,7 @@ export default function OptionsBtn({
   IconColorfill,
   Bcolor,
   BZise,
+  fontSize,
 }: OptionsHProps) {
   const { height, width } = useWindowDimensions();
   const istablet = width > 500;
@@ -43,17 +46,25 @@ export default function OptionsBtn({
       style={[
         styles.optionsbtn,
         {
-          backgroundColor: `${colorback}`,
+          backgroundColor: colorback,
           maxWidth: istablet ? "50%" : "50%",
           maxHeight: istablet ? "60%" : "100%",
           minHeight: istablet ? 100 : 125,
           marginHorizontal: istablet ? 30 : 10,
           borderColor: Bcolor ?? "#E6DED4",
           borderWidth: BZise ?? 8,
+          marginBottom: BZise >= 5 ? 19 : 22,
         },
       ]}
     >
-      <Text style={[styles.text, { color: tcolor ?? "#E6DED4" }]}>{texto}</Text>
+      <Text
+        style={[
+          styles.text,
+          { color: tcolor ?? "#E6DED4", fontSize: fontSize ?? 15 },
+        ]}
+      >
+        {texto}
+      </Text>
 
       <View
         style={[
@@ -79,16 +90,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     zIndex: 3,
   },
-  text: { marginBottom: 10, fontWeight: "bold" },
+  text: { marginBottom: 10, fontWeight: "bold", alignItems: "center" },
 
   optionsbtn: {
     flex: 1,
     margin: 10,
-    marginBottom: 17,
+
     maxWidth: "40%",
     borderRadius: 15,
 
     justifyContent: "center",
     alignItems: "center",
+
+    elevation: 4,
+    shadowColor: "#000",
+    shadowOpacity: 0.2,
+    shadowRadius: 8,
   },
 });

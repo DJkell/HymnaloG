@@ -3,8 +3,14 @@ import { Drawer } from "expo-router/drawer";
 import { Text, TouchableOpacity, StyleSheet, View } from "react-native";
 import BtnBackHeader from "@/components/BtnBackhead";
 import { Ionicons } from "@expo/vector-icons";
+import { ThemeContext } from "@/context/ThemeContext";
+import React, { useContext } from "react";
 
 export default function DrawerLayout() {
+  const themeCtx = useContext(ThemeContext);
+  if (!themeCtx) return null;
+  const { activeTheme, settings } = themeCtx;
+
   return (
     <Drawer
       screenOptions={{
@@ -27,7 +33,7 @@ export default function DrawerLayout() {
       <Drawer.Screen
         name="index"
         options={{
-          headerTintColor: "#ffffff",
+          headerTintColor: activeTheme.borderColor,
           drawerLabel: "Inicio",
           title: "",
           headerStyle: {
@@ -44,7 +50,7 @@ export default function DrawerLayout() {
               style={{
                 marginEnd: 30,
                 fontWeight: "bold",
-                color: "#E6DDCD",
+                color: activeTheme.titleColor,
                 justifyContent: "center",
               }}
             >

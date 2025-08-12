@@ -1,5 +1,6 @@
 import type { RootStackParamList } from "navigation/types";
 import type { ListItemsOp } from "@/types/ophomeTypes";
+import getRandomId from "@/components/Hymnfilltra";
 
 export const dataBtnHome: ListItemsOp[] = [
   {
@@ -19,7 +20,7 @@ export const dataBtnHome: ListItemsOp[] = [
   {
     id: "3",
     label: "Descubrir",
-    screenPt: "",
+    screenPt: ``,
     btnColor: "#895D3F",
     Icon: "book",
   },

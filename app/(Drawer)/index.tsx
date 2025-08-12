@@ -22,6 +22,7 @@ import { resetHymns } from "@/db/resetdb";
 import HomeBox from "@/components/homebox";
 import React, { useContext } from "react";
 import { ThemeContext } from "@/context/ThemeContext";
+import getRandomId from "@/components/Hymnfilltra";
 
 export default function index() {
   //*Aqui inicializamos nuestra base de datos creando la tabla e insertando los valores*/
@@ -69,8 +70,7 @@ export default function index() {
           top: 0,
           left: 0,
           zIndex: 0,
-          backgroundColor:
-            activeTheme.StatusBarColor === "light" ? "#E6DED4" : "#1C1C1A",
+          backgroundColor: activeTheme.decorationColorOne,
           borderBottomRightRadius: "100%",
           borderTopRightRadius: 1,
         }}
@@ -83,7 +83,7 @@ export default function index() {
           borderColor={activeTheme.borderColor}
           ColorText={activeTheme.titleColor}
           ColorSubText={activeTheme.subTitleColor}
-          btnColor={activeTheme.subBorderColor}
+          btnColor={activeTheme.btnStronColor}
         />
       )}
       <View
@@ -119,16 +119,22 @@ export default function index() {
           renderItem={({ item }: { item: ListItemsOp }) => (
             <OptionsBtn
               texto={item.label}
-              colorP={item.btnColor}
               option={item.id}
-              onpressp={() => router.push(item.screenPt)}
+              onpressp={() => {
+                if (item.id === "3") {
+                  router.push(`/hymn/${getRandomId()}`);
+                } else {
+                  router.push(item.screenPt);
+                }
+              }}
               Icon={item.Icon}
               colorback={activeTheme.btnliteColor}
-              Bcolor={activeTheme.subBorderColor}
-              BZise={activeTheme.borderZise}
+              Bcolor={activeTheme.borderColor}
+              BZise={activeTheme.borderSize ?? 0}
               tcolor={activeTheme.textColor}
               colorIcon={activeTheme.backgroundColor}
-              IconColorfill={activeTheme.subBorderColor}
+              IconColorfill={activeTheme.btnStronColor}
+              fontSize={settings.fontSize - 7}
             />
           )}
         />

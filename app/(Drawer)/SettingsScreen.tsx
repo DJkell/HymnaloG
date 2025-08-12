@@ -8,6 +8,7 @@ import {
   ScrollView,
 } from "react-native";
 import { ThemeContext } from "@/context/ThemeContext";
+import { FONT_MIN, FONT_MAX } from "@/constants/fontLimits";
 
 const SettingsScreen = () => {
   const themeCtx = useContext(ThemeContext);
@@ -17,7 +18,10 @@ const SettingsScreen = () => {
   const { activeTheme, settings, setFontSize, setTheme } = themeCtx;
 
   const handleFontSizeChange = (delta: number) => {
-    const newSize = Math.max(18, Math.min(26, settings.fontSize + delta));
+    const newSize = Math.max(
+      FONT_MIN,
+      Math.min(FONT_MAX, settings.fontSize + delta)
+    );
     setFontSize(newSize);
   };
 
@@ -31,52 +35,106 @@ const SettingsScreen = () => {
       <Text
         style={[
           styles.label,
-          { fontSize: settings.fontSize, color: activeTheme.textColor },
+          {
+            fontSize: settings.fontSize,
+            color: activeTheme.titleColor,
+            fontWeight: "bold",
+          },
         ]}
       >
         Tema actual: {activeTheme.name}
       </Text>
+      <View>
+        <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+          {["Light", "Dark", "Green", "Purple"].map((themeName) => (
+            <TouchableOpacity
+              key={themeName}
+              onPress={() => setTheme(themeName)}
+              style={[
+                styles.colorOption,
+                {
+                  backgroundColor:
+                    themeName == "Light"
+                      ? "#c2bfbfff"
+                      : themeName == "Dark"
+                        ? "#161414ff"
+                        : themeName.toLowerCase(),
+                  marginBottom: 50,
+                  borderColor: activeTheme.subBorderColor,
+                  borderWidth: 5,
+                },
+              ]}
+            >
+              <Text
+                style={{
+                  color: "#ffffffff",
+                  fontWeight: "bold",
+                }}
+              >
+                {themeName}
+              </Text>
+            </TouchableOpacity>
+          ))}
+        </ScrollView>
 
-      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-        {["Light", "Dark", "Green", "Purple", "Cyan"].map((themeName) => (
+        <Text
+          style={[
+            styles.label,
+            {
+              fontSize: settings.fontSize,
+              color: activeTheme.titleColor,
+              fontWeight: "bold",
+            },
+          ]}
+        >
+          Tamaño fuente:
+        </Text>
+
+        <View style={styles.fontButtons}>
           <TouchableOpacity
-            key={themeName}
-            onPress={() => setTheme(themeName)}
-            style={[
-              styles.colorOption,
-              {
-                backgroundColor:
-                  activeTheme.name === themeName
-                    ? activeTheme.borderColor
-                    : "#ccc",
-              },
-            ]}
+            style={{
+              backgroundColor: activeTheme.borderColor,
+              borderRadius: 50,
+            }}
+            onPress={() => handleFontSizeChange(1)}
           >
-            <Text style={{ color: "#fff" }}>{themeName}</Text>
+            <Text
+              style={{
+                color: "#000000ff",
+                padding: 15,
+                fontWeight: "bold",
+              }}
+            >
+              A +
+            </Text>
           </TouchableOpacity>
-        ))}
-      </ScrollView>
 
-      <Text
-        style={[
-          styles.label,
-          { fontSize: settings.fontSize, color: activeTheme.textColor },
-        ]}
-      >
-        Tamaño fuente: {settings.fontSize}
-      </Text>
-
-      <View style={styles.fontButtons}>
-        <Button
-          title="A +"
-          onPress={() => handleFontSizeChange(1)}
-          color={activeTheme.accentColor}
-        />
-        <Button
-          title="A -"
-          onPress={() => handleFontSizeChange(-1)}
-          color={activeTheme.accentColor}
-        />
+          <Text
+            style={{
+              fontSize: settings.fontSize,
+              color: activeTheme.textColor,
+            }}
+          >
+            Texto de ejemplo
+          </Text>
+          <TouchableOpacity
+            style={{
+              backgroundColor: activeTheme.borderColor,
+              borderRadius: 50,
+            }}
+            onPress={() => handleFontSizeChange(-1)}
+          >
+            <Text
+              style={{
+                color: "#000000ff",
+                padding: 15,
+                fontWeight: "bold",
+              }}
+            >
+              A -
+            </Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -100,6 +158,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     marginTop: 10,
+    alignItems: "center",
   },
 });
 

@@ -10,7 +10,7 @@ interface HomeBoxProps {
   ColorText?: string;
   ColorSubText?: string;
   btnColor?: string;
-  blurColor?: string;
+  blurColor?: "dark" | "light";
   borderSize?: number;
 }
 
@@ -72,13 +72,14 @@ const styles = StyleSheet.create({
 
     // iOS
     shadowColor: "#000",
-    shadowOffset: { width: 10, height: 10 },
     shadowOpacity: 0.2,
-    shadowRadius: 10,
+    shadowRadius: 8,
+    shadowOffset: { width: 10, height: 10 },
 
     // Android
     elevation: 0,
   },
+
   text: {
     fontSize: 30,
     fontWeight: "bold",

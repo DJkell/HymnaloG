@@ -7,12 +7,14 @@ interface CopyButtonProps {
   hymnTitle: string;
   hymnContent: string;
   onCopied?: () => void;
+  color?: string;
 }
 
 export default function CopyBtn({
   hymnTitle,
   hymnContent,
   onCopied,
+  color,
 }: CopyButtonProps) {
   const handleCopy = async () => {
     const textToCopy = `${hymnTitle}\n\n${hymnContent}`;
@@ -22,7 +24,7 @@ export default function CopyBtn({
 
   return (
     <TouchableOpacity onPress={handleCopy}>
-      <MaterialCommunityIcons name="content-copy" size={24} color="black" />
+      <MaterialCommunityIcons name="content-copy" size={24} color={color} />
     </TouchableOpacity>
   );
 }

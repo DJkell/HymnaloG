@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   View,
   TextInput,
@@ -13,7 +13,8 @@ import HymnsList from "@/components/HymnCard";
 import SearchBar from "@/components/SearchBar";
 import Btnfiltrer from "@/components/Btnfiltro";
 import CategoryFilter from "@/components/CategoryFilter";
-import { loadUserSettings } from "@/utils/settings";
+
+import { ThemeContext } from "@/context/ThemeContext";
 
 const HymnSearchScreen = () => {
   const [query, setQuery] = useState("");
@@ -21,8 +22,6 @@ const HymnSearchScreen = () => {
   const [allHymns, setAllHymns] = useState<hymnt[]>([]);
   const [filHymns, setFilHymns] = useState<hymnt[]>([]);
   const [showFilters, setShowFilters] = useState(false);
-  const [settings, setSettings] = useState("#e90c0cff");
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const loadHymns = async () => {
@@ -32,14 +31,7 @@ const HymnSearchScreen = () => {
       setFilHymns(HymnsFromDb);
       console.log("Himnos procesados" + allHymns.length);
     };
-    const init = async () => {
-      const config = await loadUserSettings();
-      setSettings(config);
-      setLoading(false);
-    };
 
-    init();
-    console.log("Configuración cargada:", settings);
     loadHymns();
   }, []);
 
@@ -54,8 +46,13 @@ const HymnSearchScreen = () => {
         hymns.title.toLowerCase().includes(text.toLowerCase()) ||
         hymns.id.toString().includes(text);
 
-      const matchesCategory = cat ? hymns.category === cat : true;
-      return matchesSearch && matchesCategory;
+      if (cat === "corto" || "largo") {
+        const matchesCategory = cat ? hymns.duration === cat : true;
+        return matchesSearch && matchesCategory;
+      } else {
+        const matchesCategory = cat ? hymns.category === cat : true;
+        return matchesSearch && matchesCategory;
+      }
     });
 
     setFilHymns(filtered);
@@ -69,8 +66,18 @@ const HymnSearchScreen = () => {
   const handleBtnFiltrer = () => {
     setShowFilters((prev) => !prev);
   };
+
+  const themeCtx = useContext(ThemeContext);
+  if (!themeCtx) return null;
+  const { activeTheme, settings } = themeCtx;
+
   return (
-    <View style={styles.container}>
+    <View
+      style={[
+        styles.container,
+        { backgroundColor: activeTheme.backgroundColor ?? "#ffffff" },
+      ]}
+    >
       <View
         style={{
           flexDirection: "row",
@@ -82,19 +89,37 @@ const HymnSearchScreen = () => {
           placeholder="Buscar por número o nombre  "
           value={query}
           onChangeText={filSearch}
+          IconColor={activeTheme.btnStronColor}
+          backgroundColor={"#E6DDCD"}
+          borderColor={activeTheme.borderColor}
+          borderSize={activeTheme.borderSize - 3}
         />
 
         <Btnfiltrer
           showFilters={showFilters}
           onSelect={handleBtnFiltrer}
           width={"20%"}
+          IconColor={activeTheme.btnStronColor}
+          backgroundColor={"#E6DDCD"}
+          borderColor={activeTheme.borderColor}
+          borderSize={activeTheme.borderSize - 3}
         />
       </View>
       {showFilters && (
-        <CategoryFilter selected={category} onSelect={handleCategorySelect} />
+        <CategoryFilter
+          selected={category}
+          onSelect={handleCategorySelect}
+          backgroundColor={activeTheme.btnStronColor}
+          selectColor={activeTheme.titleColor}
+        />
       )}
 
-      <HymnsList data={filHymns} />
+      <HymnsList
+        data={filHymns}
+        textcolor={activeTheme.textColor}
+        titleColor={activeTheme.titleColor}
+        fontSize={settings.fontSize - 1}
+      />
     </View>
   );
 };
@@ -102,7 +127,6 @@ const HymnSearchScreen = () => {
 const styles = StyleSheet.create({
   container: {
     padding: 16,
-    backgroundColor: "#ffffffff",
     flex: 1,
   },
   input: {

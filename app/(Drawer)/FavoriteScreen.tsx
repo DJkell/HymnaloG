@@ -1,5 +1,5 @@
 import { View, Text, ScrollView, StyleSheet } from "react-native";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import { getFav } from "@/db/getFav";
 import { hymnt } from "@/types/hymnTypes";
 import HymnsList from "@/components/HymnCard";
@@ -8,15 +8,13 @@ import React from "react";
 import CategoryFilter from "@/components/CategoryFilter";
 import Btnfiltrer from "@/components/Btnfiltro";
 import BtnBasic from "@/components/BtnBasic";
-import { loadUserSettings } from "@/utils/settings";
+import { ThemeContext } from "@/context/ThemeContext";
 
 export default function FavoriteHymns() {
   const [HymnsF, setHymnsF] = useState<hymnt[]>([]);
   const [filtered, setFiltered] = useState<hymnt[]>([]);
   const [category, setCategory] = useState<string | null>(null);
   const [showFilters, setShowFilters] = useState(false);
-  const [settings, setSettings] = useState(null);
-  const [loading, setLoading] = useState(true);
 
   const loadFavorites = async () => {
     const datafav = await getFav();
@@ -25,13 +23,7 @@ export default function FavoriteHymns() {
   };
 
   useEffect(() => {
-    const init = async () => {
-      const config = await loadUserSettings();
-      setSettings(config);
-      setLoading(false);
-    };
     loadFavorites();
-    init();
   }, []);
 
   useFocusEffect(
@@ -56,34 +48,50 @@ export default function FavoriteHymns() {
     setShowFilters((prev) => !prev);
   };
 
+  const themeCtx = useContext(ThemeContext);
+  if (!themeCtx) return null;
+
+  const { activeTheme, settings } = themeCtx;
+
   if (filtered.length == 0) {
     return (
-      <View style={styles.container}>
+      <View
+        style={[
+          styles.container,
+
+          { backgroundColor: activeTheme.backgroundColor },
+        ]}
+      >
         <View style={{ padding: 10 }}>
           <Btnfiltrer
             showFilters={showFilters}
             onSelect={handleBtnFiltrer}
             height={40}
             width={"100%"}
+            backgroundColor="#E6DDCD"
           />
 
           {showFilters && (
             <CategoryFilter
               selected={category}
               onSelect={handleCategorySelect}
+              backgroundColor={activeTheme.btnStronColor}
+              selectColor={activeTheme.titleColor}
             />
           )}
         </View>
         <View
           style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
         >
-          <Text style={{ fontSize: 20 }}>Aún no tienes himnos guardados</Text>
+          <Text style={{ fontSize: 20, color: activeTheme.titleColor }}>
+            Aún no tienes himnos guardados
+          </Text>
           <BtnBasic
             text="BUSCAR"
             link="/HymnSearchScreen"
             width={"60%"}
-            bgColor="#895D3F"
-            TextColor="#E6DED4"
+            bgColor={activeTheme.btnStronColor}
+            TextColor={"#E6DED4"}
             height={50}
             marginT={30}
           />
@@ -92,13 +100,19 @@ export default function FavoriteHymns() {
     );
   } else {
     return (
-      <View style={styles.container}>
+      <View
+        style={[
+          styles.container,
+          { backgroundColor: activeTheme.backgroundColor },
+        ]}
+      >
         <View style={{ padding: 10 }}>
           <Btnfiltrer
             showFilters={showFilters}
             onSelect={handleBtnFiltrer}
             height={40}
             width={"100%"}
+            backgroundColor={"#E6DDCD"}
           />
 
           {showFilters && (
@@ -109,7 +123,12 @@ export default function FavoriteHymns() {
           )}
         </View>
 
-        <HymnsList data={filtered} />
+        <HymnsList
+          data={filtered}
+          textcolor={activeTheme.textColor}
+          titleColor={activeTheme.titleColor}
+          fontSize={settings.fontSize - 1}
+        />
       </View>
     );
   }

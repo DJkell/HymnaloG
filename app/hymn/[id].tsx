@@ -15,7 +15,7 @@ import { hymnt } from "@/types/hymnTypes";
 import { useRouter } from "expo-router";
 import { toggleFavorite } from "@/db/shangeFav";
 import { useFocusEffect } from "expo-router";
-import React, { useCallback } from "react";
+import React, { useCallback, useContext } from "react";
 import BtnBack from "@/components/BtnBack";
 import BtnFav from "@/components/btnfavorite";
 import { rgbaColor } from "react-native-reanimated/lib/typescript/Colors";
@@ -24,6 +24,8 @@ import BtnBasic from "@/components/BtnBasic";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import Toast from "react-native-root-toast";
 import { RootSiblingParent } from "react-native-root-siblings";
+import { FONT_MAX, FONT_MIN } from "@/constants/fontLimits";
+import { ThemeContext } from "@/context/ThemeContext";
 
 ("/app/hymn/[id].tsx");
 
@@ -35,7 +37,7 @@ export default function HymnContent() {
   const { id } = useLocalSearchParams();
   const [hymn, setHymn] = useState<hymnt | null>(null);
   const [loading, setLoading] = useState(true);
-  const [fontSize, setFontSize] = useState(18);
+
   const router = useRouter();
 
   useFocusEffect(
@@ -55,10 +57,12 @@ export default function HymnContent() {
           setLoading(false);
         }
       };
+
       loadHymns();
     }, [id])
   );
 
+  //Configuramos el cambio a favoritos de los hymnos.
   const handleFavoriteToggle = async () => {
     if (!hymn) return;
     const newStatus = await toggleFavorite(hymn.id, hymn.favorit);
@@ -72,6 +76,7 @@ export default function HymnContent() {
     return <ActivityIndicator size="large" style={{ marginTop: 40 }} />;
   }
 
+  //Configuramos el mensajito que sale al copiar texto o guardar en fav
   const showCopiedToast = (Text: string) => {
     Toast.show(`${Text}`, {
       duration: Toast.durations.SHORT,
@@ -82,12 +87,26 @@ export default function HymnContent() {
     });
   };
 
+  //Referenciamos el Contex de los temas
+  const themeCtx = useContext(ThemeContext);
+  if (!themeCtx) return null;
+  const { activeTheme, settings, setFontSize } = themeCtx;
+
+  //Manejo del Size de la fuente
+  const handleFontSizeChange = (delta: number) => {
+    const newSize = Math.max(
+      FONT_MIN,
+      Math.min(FONT_MAX, settings.fontSize + delta)
+    );
+    setFontSize(newSize);
+  };
+
   return (
     <RootSiblingParent>
       <ScrollView
         contentContainerStyle={[
           styles.container,
-          { backgroundColor: "#5F7862" },
+          { backgroundColor: activeTheme.backgroundColor },
         ]}
       >
         <View
@@ -98,7 +117,9 @@ export default function HymnContent() {
             marginBottom: 20,
           }}
         >
-          <Text style={styles.num}>{`Himno #${hymn.id}`}</Text>
+          <Text
+            style={[styles.num, { color: activeTheme.textColor }]}
+          >{`Himno #${hymn.id}`}</Text>
           <View
             style={{
               flexDirection: "row",
@@ -109,37 +130,49 @@ export default function HymnContent() {
             <MaterialCommunityIcons
               name="format-font-size-decrease"
               size={28}
-              color={fontSize <= 20 ? "red" : "black"}
-              onPress={() => {
-                if (fontSize > 20) {
-                  setFontSize(fontSize - 2);
-                }
-              }}
+              color={settings.fontSize <= 22.5 ? "red" : activeTheme.titleColor}
+              onPress={() => handleFontSizeChange(-1)}
             />
             <MaterialCommunityIcons
               name="format-font-size-increase"
               size={28}
-              color={fontSize >= 28 ? "red" : "black"}
-              onPress={() => {
-                if (fontSize < 28) {
-                  setFontSize(fontSize + 2);
-                }
-              }}
+              color={settings.fontSize >= 27 ? "red" : activeTheme.titleColor}
+              onPress={() => handleFontSizeChange(1)}
             />
             <CopyBtn
               hymnTitle={hymn.title}
               hymnContent={hymn.content}
               onCopied={() => showCopiedToast(`Himno Copiado 📄​`)}
+              color={activeTheme.titleColor}
             />
-            <BtnFav onPressP={handleFavoriteToggle} State={hymn.favorit} />
+            <BtnFav
+              onPressP={handleFavoriteToggle}
+              State={hymn.favorit}
+              color={activeTheme.titleColor}
+            />
           </View>
         </View>
 
-        <Text style={styles.title}>{hymn.title}</Text>
-        <Text style={styles.category}>{`${hymn.category} `}</Text>
-        <Text style={[styles.lyrics, { fontSize: fontSize }]}>
+        <Text
+          style={[
+            styles.title,
+            { color: activeTheme.titleColor, fontSize: settings.fontSize + 2 },
+          ]}
+        >
+          {hymn.title}
+        </Text>
+
+        <Text
+          style={[
+            styles.lyrics,
+            { fontSize: settings.fontSize, color: activeTheme.subTitleColor },
+          ]}
+        >
           {hymn.content}
         </Text>
+        <Text
+          style={[styles.category, { color: activeTheme.textColor }]}
+        >{`${hymn.category} `}</Text>
         <Toast />
       </ScrollView>
     </RootSiblingParent>
@@ -153,9 +186,8 @@ const styles = StyleSheet.create({
     paddingBottom: 100,
   },
   title: {
-    fontSize: 24,
     fontWeight: "bold",
-    marginBottom: 4,
+    marginVertical: 20,
   },
   num: {
     fontSize: 18,
@@ -167,7 +199,7 @@ const styles = StyleSheet.create({
     fontSize: 14,
     fontStyle: "italic",
     color: "#555",
-    marginBottom: 16,
+    marginTop: 30,
   },
   lyrics: {
     lineHeight: 28,

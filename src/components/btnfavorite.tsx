@@ -6,14 +6,15 @@ interface btnfavP {
   State: number;
   onPressP: () => void;
   onSaved?: () => void;
+  color?: string;
 }
 
-export default function BtnFav({ State, onPressP, onSaved }: btnfavP) {
+export default function BtnFav({ State, onPressP, onSaved, color }: btnfavP) {
   return (
     <TouchableOpacity onPress={() => onPressP()}>
       {State == 0 ? (
         <>
-          <MaterialIcons name="favorite-border" size={30} color="black" />{" "}
+          <MaterialIcons name="favorite-border" size={30} color={color} />{" "}
         </>
       ) : (
         <>

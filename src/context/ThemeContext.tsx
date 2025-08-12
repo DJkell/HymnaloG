@@ -16,9 +16,11 @@ export type Theme = {
   titleColor?: string;
   subTitleColor?: string;
   btnliteColor: string;
+  btnStronColor?: string;
   borderColor?: string;
   subBorderColor?: string;
-  borderZise?: number;
+  borderSize: number;
+  decorationColorOne?: string;
 };
 
 export type ThemeContextType = {
@@ -33,61 +35,64 @@ const themeOptions: Theme[] = [
   {
     name: "Light",
     backgroundColor: "#fffdfdff",
-    litebackgroundColor: "#E6DDCD",
+    litebackgroundColor: "#353532ff",
     StatusBarColor: "dark",
     textColor: "#000000",
     titleColor: "#593B25",
     subTitleColor: "#704C34",
-    btnliteColor: "#E6DED4",
+    btnliteColor: "#E6DDCD",
+    btnStronColor: "#21211F",
     borderColor: "#8d6e5aff",
     subBorderColor: "#21211F",
-    borderZise: 5,
+    decorationColorOne: "#E6DDCD",
+    borderSize: 0,
   },
   {
     name: "Dark",
     backgroundColor: "#1C1C1A",
     litebackgroundColor: "#c5c3c3ff",
     StatusBarColor: "light",
-    textColor: "#1C1C1A",
+    textColor: "#99867aff",
     titleColor: "#ffffffff",
     subTitleColor: "#E6DED4",
     btnliteColor: "#E6DED4",
+    btnStronColor: "#704C34",
     borderColor: "#895D3F",
     subBorderColor: "#895D3F",
-    borderZise: 5,
+    decorationColorOne: "#E6DDCD",
+    borderSize: 5,
   },
   {
     name: "Green",
-    backgroundColor: "#3f51b5ff",
+    backgroundColor: "#5F7862",
     litebackgroundColor: "#c5c3c3ff",
     StatusBarColor: "light",
-    textColor: "#ffffff",
+    textColor: "#E6DDCD",
     titleColor: "#ffffffff",
-    btnliteColor: "#8bc34a",
-    borderColor: "#558b2f",
-    subBorderColor: "#21211F",
+    subTitleColor: "#E6DED4",
+
+    btnliteColor: "#895D3F",
+    btnStronColor: "#21211F",
+    borderColor: "#E6DDCD",
+    subBorderColor: "#E6DDCD",
+    decorationColorOne: "#21211F",
+    borderSize: 5,
   },
   {
     name: "Purple",
-    backgroundColor: "#ffab00ff",
+    backgroundColor: "#756184",
     litebackgroundColor: "#c5c3c3ff",
     StatusBarColor: "light",
-    textColor: "#000000",
+    textColor: "#E6DDCD",
     titleColor: "#ffffffff",
-    btnliteColor: "#7e57c2",
-    borderColor: "#5e35b1",
+    subTitleColor: "#E6DED4",
+
+    btnliteColor: "#895D3F",
+    btnStronColor: "#21211F",
+    borderColor: "#E6DDCD",
     subBorderColor: "#21211F",
-  },
-  {
-    name: "Cyan",
-    backgroundColor: "#009688ff",
-    litebackgroundColor: "#c5c3c3ff",
-    StatusBarColor: "light",
-    textColor: "#ffffff",
-    titleColor: "#ffffffff",
-    btnliteColor: "#00e5ff",
-    borderColor: "#00bcd4",
-    subBorderColor: "#21211F",
+    decorationColorOne: "#21211F",
+    borderSize: 5,
   },
 ];
 

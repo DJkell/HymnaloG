@@ -15,9 +15,17 @@ import MaterialIcons from "@expo/vector-icons/MaterialIcons";
 
 interface HymnListProps {
   data: hymnt[];
+  textcolor?: string;
+  fontSize?: number;
+  titleColor?: string;
 }
 
-const HymnsList = ({ data }: HymnListProps) => {
+const HymnsList = ({
+  data,
+  textcolor,
+  fontSize,
+  titleColor,
+}: HymnListProps) => {
   const router = useRouter();
 
   return (
@@ -26,7 +34,10 @@ const HymnsList = ({ data }: HymnListProps) => {
       keyExtractor={(item) => item.id.toString()}
       renderItem={({ item }) => (
         <TouchableOpacity
-          style={styles.hymnCard}
+          style={[
+            styles.hymnCard,
+            { borderBottomWidth: 1, borderBottomColor: "#E6DDCD" },
+          ]}
           onPress={() => router.push(`/hymn/${item.id}`)}
         >
           <View
@@ -36,8 +47,19 @@ const HymnsList = ({ data }: HymnListProps) => {
               alignItems: "center",
             }}
           >
-            <Text style={styles.hymnNumber}>{`${item.id}   `}</Text>
-            <Text style={styles.hymnName}>{` ${item.title}`}</Text>
+            <Text
+              style={[
+                styles.hymnNumber,
+                { color: textcolor, fontSize: fontSize },
+              ]}
+            >{`${item.id}   `}</Text>
+
+            <Text
+              style={[
+                styles.hymnName,
+                { color: titleColor, fontSize: fontSize },
+              ]}
+            >{` ${item.title}`}</Text>
             {/*           <Text style={styles.tags}>
               {item.category} • {item.duration}
             </Text> */}
@@ -74,8 +96,6 @@ const styles = StyleSheet.create({
     marginVertical: 6,
     flexDirection: "row",
     justifyContent: "space-between",
-    borderBottomWidth: 1,
-    borderBottomColor: "#E6DDCD",
   },
   hymnNumber: {
     fontWeight: "bold",
@@ -86,6 +106,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     marginBottom: 4,
+    maxWidth: "95%",
   },
   tags: {
     fontSize: 12,
