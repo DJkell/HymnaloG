@@ -39,6 +39,7 @@ conexión a internet.
 ---
 
 - Vista de los Himnos
+
 ![Imagen de WhatsApp 2025-08-12 a las 23 17 32_83ebe5ec](https://github.com/user-attachments/assets/7445501a-8be6-4329-a033-b0416d5ab92a)
 ![Imagen de WhatsApp 2025-08-12 a las 23 17 33_b9065e0b](https://github.com/user-attachments/assets/b5b61252-4211-4562-b74c-eb6a684f67ee)
 ![Imagen de WhatsApp 2025-08-12 a las 23 17 33_0f6af0b5](https://github.com/user-attachments/assets/5b9dab1b-5d67-47b3-86b9-0cb38de5c036)
@@ -48,6 +49,8 @@ Esta vista contiene un grupo de configuraciones de acceso rapido tales como mani
 ---
 
 - Vista de Favoritos.
- ![Imagen de WhatsApp 2025-08-12 a las 23 17 34_679896c6](https://github.com/user-attachments/assets/8206a863-87b8-41f2-8964-fdac5bef9a36)![Imagen de WhatsApp 2025-08-12 a las 23 17 32_c140db37](https://github.com/user-attachments/assets/1aa4ef7c-7ecb-46b5-a894-93b5cf146320)
+
+
+![Imagen de WhatsApp 2025-08-12 a las 23 17 34_679896c6](https://github.com/user-attachments/assets/8206a863-87b8-41f2-8964-fdac5bef9a36)![Imagen de WhatsApp 2025-08-12 a las 23 17 32_c140db37](https://github.com/user-attachments/assets/1aa4ef7c-7ecb-46b5-a894-93b5cf146320)
   
 
