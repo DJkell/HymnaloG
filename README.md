@@ -1,4 +1,4 @@
-# 📖 Himnario Cristiano – App Móvil
+# 📖 Himnario – App Móvil
 
 Una aplicación móvil de himnario cristiano desarrollada con **React Native** y **SQLite**, pensada para ofrecer acceso rápido y sin conexión a canciones cristianas, facilitando la experiencia de adoración para los integrantes de iglesias, grupos de alabanza y creyentes en general.
 
