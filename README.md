@@ -32,8 +32,6 @@ conexión a internet.
 ## 🎨 Imagenes de Vistas
 
 - Vista del Home con diferentes Temas.
-
-<img src="https://tu-url-de-imagen.png](https://github.com/user-attachments/assets/c38e77c0-e9cf-4f1d-beea-f2437d7e4558)![Imagen de WhatsApp 2025-08-12 a las 23 17 31_b0f76bde](https://github.com/user-attachments/assets/abfc54cc-f0e4-44bc-9ceb-4ba397818da0)" alt="Descripción de imagen" width="300" />
 ![Imagen de WhatsApp 2025-08-12 a las 23 17 31_74fa6705](https://github.com/user-attachments/assets/c38e77c0-e9cf-4f1d-beea-f2437d7e4558)![Imagen de WhatsApp 2025-08-12 a las 23 17 31_b0f76bde](https://github.com/user-attachments/assets/abfc54cc-f0e4-44bc-9ceb-4ba397818da0)![Imagen de WhatsApp 2025-08-12 a las 23 17 31_b16f657a](https://github.com/user-attachments/assets/1d4e4a0d-1d6d-427d-8a74-5e5f9d1d9cf8)![Imagen de WhatsApp 2025-08-12 a las 23 17 31_94516890](https://github.com/user-attachments/assets/8c567b9a-4bd3-4387-83a1-45ccfde9ae29)
 
 ---
